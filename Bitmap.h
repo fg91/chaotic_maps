@@ -3,6 +3,7 @@
 #ifndef BITMAP_H_
 #define BITMAP_H_
 
+#include <memory>
 #include <string>
 #include <cstdint>
 
