@@ -13,6 +13,11 @@ Bitmap::Bitmap(int width, int height)
       m_pPixels(new uint8_t[width * height * 3]{}) {
 }
 
+Bitmap::Bitmap(Bitmap &&other)
+    : m_pPixels(std::move(other.m_pPixels)),
+      m_width(other.m_width), m_height(other.m_height) {
+}
+
 bool Bitmap::write(std::string filename) {
   BitmapFileHeader fileHeader;
   BitmapInfoHeader infoHeader;

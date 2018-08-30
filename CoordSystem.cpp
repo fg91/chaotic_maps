@@ -14,7 +14,7 @@ CoordSystem::CoordSystem(double xmin, double xmax, double ymin,
   assert(_ymin < _ymax);
 }
 
-pair<double, double> CoordSystem::coordTransform(int xBitmap, int yBitmap) {
+pair<double, double> CoordSystem::coordTransform(int xBitmap, int yBitmap) const {
 
   assert(xBitmap >= 0);
   assert(yBitmap >= 0);

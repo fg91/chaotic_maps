@@ -4,10 +4,11 @@
 #define CHAOTICMAP_H_
 
 struct ChaoticMap {
+  double _r{0};
   double _x{0};
   int _nTransient{0};
   int _nSamples{0};
-  ChaoticMap(double x, int transient, int samples);
+  ChaoticMap(double r, double x, int transient, int samples);
   virtual double equation() = 0;
   virtual void doTransient() = 0;
 };

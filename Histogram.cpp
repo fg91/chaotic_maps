@@ -13,8 +13,10 @@ Histogram::Histogram(int nBins, double min, double max)
 }
 
 void Histogram::add(double value) {
-  assert(value >= _min && value <= _max);
-
+  if (value < _min || value > _max) {
+    return;
+  }
+  count++;
   if (value == _max) {
     _bins[_nBins - 1]++;
   } else {
@@ -25,6 +27,10 @@ void Histogram::add(double value) {
 int Histogram::get(int pos) const {
   assert(pos >= 0 && pos < _nBins);
   return _bins[pos];
+}
+
+int Histogram::getCount() const {
+  return count;
 }
 
 Histogram::iterator Histogram::begin() {

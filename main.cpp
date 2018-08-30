@@ -1,55 +1,45 @@
 // "Copyright 2018 <Fabio M. Graetz>"
+
 #include <iostream>
-#include <cstdint>
-#include "Bitmap.h"
+#include <sstream>
 #include "CoordSystem.h"
 #include "LogisticMap.h"
-#include "Histogram.h"
-
-
-
-using std::cout;
-using std::endl;
-
+#include "GaussMap.h"
+#include "BifurcationDiagram.h"
 
 int main() {
 
-  int width = 4000;
-  int height = 4000;
+  int width = 1920;
+  int height = 1080;
 
-  double xmin = 2.0;
-  double xmax = 4.0;
-  double ymin = 0.;
-  double ymax = 1.;
-      
-  // Here assert when moving to class
+  double xmin = -1.;
+  double xmax = 1.0;
+  double ymin = -1.0;
+  double ymax = 1.5;
+
+  int transient = 1000;
+  int samples = 150000;
+
+  int brightness = 50;
   
-  Bitmap test(width, height);
-  CoordSystem coords(xmin, xmax, ymin, ymax, width, height);
-
-
-
-  for (int x = 0; x < width; x++) {
-    // Get physical x coordinate
-    double co = coords.coordTransform(x, 0).first;
-    cout << co << endl;
-    Histogram hist(height, ymin, ymax);
-    LogisticMap l(co, 0.5, 1000, 10000);
-    l.doTransient();
-    for (int i = 0; i < l._nSamples; i++) {
-      double val = l.equation();
-      hist.add(val);
-    }
-
-    Histogram::iterator it = hist.begin();
-    for (int y = 0; y < height; y++, it++) {
-      test.setPixel(x, y, 255-255**it/50., 255-255**it/50., 255-255**it/50.);
-    }
-    
-
-    
+  
+  for (double alpha = 4.5; alpha < 5; alpha+= 0.01) {
+    std::cout << alpha << std::endl;
+    CoordSystem coords(xmin, xmax, ymin, ymax, width, height);
+    //  LogisticMap map(0.0, 0.5, transient, samples);
+    GaussMap map(0.0, alpha, 0.5, transient, samples);
+    BifurcationDiagram bD(width, height, transient, samples, brightness, coords, &map);
+  
+    std::stringstream ss;
+  
+    ss << "Bild";
+    ss << alpha;
+    ss << ".bmp";
+  
+    bD.drawDiagram(ss.str(), false);
   }
 
-  test.write("log.bmp");
+
+  
   return 0;
 }

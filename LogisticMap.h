@@ -6,7 +6,6 @@
 #include "ChaoticMap.h"
 
 struct LogisticMap: ChaoticMap {
-  double _r{0};
   LogisticMap(double r, double x0, int transient, int samples);
   virtual double equation();
   virtual void doTransient();

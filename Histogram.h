@@ -14,6 +14,7 @@ class Histogram {
   const double _min;
   const double _max;
   const double _binWidth;
+  int count{0};
   std::unique_ptr<int[]> _bins{nullptr};
   
  public:
@@ -22,6 +23,7 @@ class Histogram {
   int get(int pos) const;
   iterator begin();
   iterator end();
+  int getCount() const;
 };
 
 class Histogram::iterator {
