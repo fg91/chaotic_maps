@@ -19,6 +19,11 @@ class Histogram {
   
  public:
   Histogram(int nBins, double min, double max);
+  Histogram(const Histogram &other) = delete;
+  Histogram &operator=(const Histogram &other) = delete;
+  Histogram(Histogram &&o);
+  Histogram &operator=(Histogram &&o) = delete;  // because _nBins is const!
+  virtual ~Histogram();
   void add(double value);
   int get(int pos) const;
   iterator begin();

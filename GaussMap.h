@@ -7,9 +7,10 @@
 
 struct GaussMap: ChaoticMap {
   double _alpha{1.};
-  GaussMap(double r, double alpha, double x0, int transient, int samples);
-  virtual double equation();
-  virtual void doTransient();
+  GaussMap(double alpha, int transient, int samples);
+  virtual ~GaussMap();
+  virtual double equation(double x, double r);
+  virtual double doTransient(double x0, double r);
 };
 
 #endif  // GAUSSMAP_H_

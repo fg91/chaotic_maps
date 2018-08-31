@@ -3,21 +3,25 @@
 #include <assert.h>
 #include "LogisticMap.h"
 
-LogisticMap::LogisticMap(double r, double x0, int transient, int samples)
-    : ChaoticMap(r, x0, transient, samples) {
-  assert(r >= 0. && r <= 4.);
-  assert(x0 >=0 && x0 <= 1.);
+LogisticMap::LogisticMap(int transient, int samples)
+    : ChaoticMap(transient, samples) {
   assert(transient >= 0 && samples > 0);
 }
 
-double LogisticMap::equation() {
-  assert(_r >= 0. && _r <= 4.);
-  _x = _r * _x * (1. - _x);
-  return _x;
+LogisticMap::~LogisticMap() {
 }
 
-void LogisticMap::doTransient() {
+double LogisticMap::equation(double x, double r) {
+  assert(r >= 0. && r <= 4.);
+  assert(x >=0 && x <= 1.);
+
+  x = r * x * (1. - x);
+  return x;
+}
+
+double LogisticMap::doTransient(double x0, double r) {
   for (int i = 0; i < _nTransient; i++) {
-    equation();
+    x0 = equation(x0, r);
   }
+  return x0;
 }

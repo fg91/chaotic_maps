@@ -5,14 +5,14 @@
 #include "BifurcationDiagram.h"
 
 BifurcationDiagram::BifurcationDiagram(int width, int height,
-                                       int transient, int samples,
                                        int brightness,
                                        const CoordSystem &coords,
                                        ChaoticMap *map)
-    : _width(width), _height(height), _transient(transient),
-      _samples(samples), _brightness(brightness),
+    : _width(width), _height(height), _brightness(brightness),
       _coords(coords), _map(map), _bitmap(Bitmap(width, height)) {
 
+}
+BifurcationDiagram::~BifurcationDiagram() {
 }
 
 void BifurcationDiagram::drawDiagram(std::string filename, bool verbose) {
@@ -22,10 +22,10 @@ void BifurcationDiagram::drawDiagram(std::string filename, bool verbose) {
     }
     double xDiag = _coords.coordTransform(xFrame, 0).first;
     Histogram hist(_height, _coords._ymin, _coords._ymax);
-    _map->_r = xDiag;
-    _map->doTransient();
+    double x0 = _map->doTransient(0.5, xDiag);
     for (int i = 0; i < _map->_nSamples; i++) {
-      hist.add(_map->equation());
+      x0 = _map->equation(x0, xDiag);
+      hist.add(x0);
     }
     int count = hist.getCount();
     Histogram::iterator it = hist.begin();

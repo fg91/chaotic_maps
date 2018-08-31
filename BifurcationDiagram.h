@@ -14,23 +14,21 @@ class BifurcationDiagram {
  private:
   int _width{800};
   int _height{600};
-  int _transient{1000};
-  int _samples{1000};
   int _brightness{150};
   Bitmap _bitmap;
   const CoordSystem &_coords;
   ChaoticMap *_map;
 
-
  public:
-  BifurcationDiagram(int width, int height, int transient,
-                     int samples, int brightness,
+  BifurcationDiagram(int width, int height, int brightness,
                      const CoordSystem &coords, ChaoticMap *map);
+  BifurcationDiagram(const BifurcationDiagram &other) = delete;  // member _bitmap has unique_ptr
+  BifurcationDiagram &operator=(const BifurcationDiagram &other) = delete;
+  BifurcationDiagram(BifurcationDiagram &&other) = default;
+  BifurcationDiagram &operator=(BifurcationDiagram &&other) = delete;  // _coords is const
+  virtual ~BifurcationDiagram();
   void drawDiagram(std::string filename, bool verbose);
   uint8_t color(int brightness, int binCount, int totCount);
-  
-  
-  
 };
 
 #endif  // BIFURCATIONDIAGRAM_H_

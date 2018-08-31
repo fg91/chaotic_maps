@@ -16,6 +16,7 @@ struct CoordSystem {
 
   CoordSystem(double xmin, double xmax, double ymin,
               double ymax, int width, int height);
+  virtual ~CoordSystem();
   std::pair<double, double> coordTransform(int xBitmap, int yBitmap) const;
 };
 

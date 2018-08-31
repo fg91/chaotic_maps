@@ -9,13 +9,20 @@ using std::ofstream;
 using std::ios;
 
 Bitmap::Bitmap(int width, int height)
-    : m_width(width), m_height(height),
-      m_pPixels(new uint8_t[width * height * 3]{}) {
+    : _width(width), _height(height),
+      _pPixels(new uint8_t[width * height * 3]{}) {
 }
 
 Bitmap::Bitmap(Bitmap &&other)
-    : m_pPixels(std::move(other.m_pPixels)),
-      m_width(other.m_width), m_height(other.m_height) {
+    : _pPixels(std::move(other._pPixels)),
+      _width(other._width), _height(other._height) {
+}
+
+Bitmap &Bitmap::operator=(Bitmap &&other) {
+  _pPixels = std::move(other._pPixels);
+  _width = other._width;
+  _height = other._height;
+  return *this;
 }
 
 bool Bitmap::write(std::string filename) {
@@ -24,11 +31,11 @@ bool Bitmap::write(std::string filename) {
 
   fileHeader.fileSize = sizeof(BitmapFileHeader)
       + sizeof(BitmapInfoHeader)
-      + m_width*m_height*3;
+      + _width*_height*3;
   fileHeader.dataOffset = sizeof(BitmapFileHeader) + sizeof(BitmapInfoHeader);
   
-  infoHeader.width = m_width;
-  infoHeader.height = m_height;
+  infoHeader.width = _width;
+  infoHeader.height = _height;
 
   ofstream file;
   file.open(filename, ios::out|ios::binary);
@@ -39,7 +46,7 @@ bool Bitmap::write(std::string filename) {
 
   file.write(reinterpret_cast<char *>(&fileHeader), sizeof(fileHeader));
   file.write(reinterpret_cast<char *>(&infoHeader), sizeof(infoHeader));
-  file.write(reinterpret_cast<char *>(m_pPixels.get()), m_width*m_height*3);
+  file.write(reinterpret_cast<char *>(_pPixels.get()), _width*_height*3);
   
   file.close();
 
@@ -50,8 +57,8 @@ bool Bitmap::write(std::string filename) {
 }
 
 void Bitmap::setPixel(int x, int y, uint8_t red, uint8_t green, uint8_t blue) {
-  uint8_t *pPixel = m_pPixels.get();
-  pPixel += 3 * (y * m_width + x);
+  uint8_t *pPixel = _pPixels.get();
+  pPixel += 3 * (y * _width + x);
 
   // bitmap is a little endian file format
   pPixel[0] = blue;

@@ -12,6 +12,14 @@ Histogram::Histogram(int nBins, double min, double max)
 
 }
 
+Histogram::Histogram(Histogram &&o)
+    : _nBins(o._nBins), _bins(std::move(o._bins)),
+      _min(o._min), _max(o._max), _binWidth(o._binWidth) {
+}
+
+Histogram::~Histogram() {
+}
+
 void Histogram::add(double value) {
   if (value < _min || value > _max) {
     return;
