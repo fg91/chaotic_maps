@@ -1,8 +1,8 @@
 CXX=g++
-CPPFLAGS=-std=c++11 -fopenmp -O2
+CPPFLAGS=-std=c++11 #-fopenmp -O2
 LIBSEARCHPATH=-L/opt/local/lib/
 
-OBJECTS=$(PROJECT).o Bitmap.o CoordSystem.o ChaoticMap.o LogisticMap.o Histogram.o BifurcationDiagram.o GaussMap.o
+OBJECTS=$(PROJECT).o Bitmap.o CoordSystem.o ChaoticMap.o LogisticMap.o Histogram.o BifurcationDiagram.o GaussMap.o Zoom.o
 PROJECT=main
 
 $(PROJECT) : $(OBJECTS)

@@ -40,6 +40,6 @@ void BifurcationDiagram::drawDiagram(std::string filename, bool verbose) {
 }
 
 uint8_t BifurcationDiagram::color(int brightness, int binCount, int totCount) {
-  double dummy = static_cast<double>(binCount)/totCount;
+  double dummy = static_cast<double>(binCount)/ (totCount + 1);
   return 255 * (1 - fmin(brightness*dummy, 1.));
 }

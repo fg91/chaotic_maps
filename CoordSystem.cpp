@@ -28,3 +28,4 @@ pair<double, double> CoordSystem::coordTransform(int xBitmap, int yBitmap) const
   double yCoord = _ymin + _deltaY * static_cast<double>(yBitmap)/(_height - 1);
   return pair<double, double>(xCoord, yCoord);
 }
+
