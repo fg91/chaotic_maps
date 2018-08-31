@@ -16,6 +16,7 @@ BifurcationDiagram::~BifurcationDiagram() {
 }
 
 void BifurcationDiagram::drawDiagram(std::string filename, bool verbose) {
+  #pragma omp parallel for
   for (int xFrame = 0; xFrame < _width; xFrame++) {
     if (verbose == true && xFrame%(_width/10) == 0) {
       std::cout << 100 * static_cast<double>(xFrame)/_width << "%" << std::endl;
@@ -33,6 +34,7 @@ void BifurcationDiagram::drawDiagram(std::string filename, bool verbose) {
       uint8_t col = color(_brightness, *it, count);
       _bitmap.setPixel(xFrame, yFrame, col, col, col);
     }
+
   }
   _bitmap.write(filename);
 }

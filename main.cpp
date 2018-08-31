@@ -15,13 +15,13 @@ int main() {
   int width = 1920;
   int height = 1080;
   
-  double xmin = 3.5;
+  double xmin = 2.5;
   double xmax = 4.0;
   double ymin = 0.0;
   double ymax = 1.;
 
   int transient = 1000;
-  int samples = 1000;
+  int samples = 1000000;
 
   int brightness = 80;
   
