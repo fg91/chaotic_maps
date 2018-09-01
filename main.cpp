@@ -78,13 +78,7 @@ int main() {
   // -----------------------------------------------
   // --- Example 3: changing parameter animation ---
   // -----------------------------------------------
-  
-
-
-
-
-
-
+  /*
   // Parameters for frame and animation
   int width = 1920;
   int height = 1080;
@@ -114,8 +108,15 @@ int main() {
     bd.drawDiagram(ss.str(), false);
     std::cout << i << std::endl;
   }
+  */
 
-
+  
+  LogisticMap map(0, 1000);
+  double x = .1;
+  for (int i = 0; i < map._nSamples; i++) {
+    std::cout << i << "\t" << x << std::endl;
+    x = map.equation(x, 3.7);
+  }
 
 
 
