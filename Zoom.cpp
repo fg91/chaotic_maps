@@ -1,7 +1,7 @@
 // "Copyright 2018 <Fabio M. Graetz>"
 
 #include <iostream>
-
+#include <iomanip>
 #include <assert.h>
 #include "Zoom.h"
 
@@ -34,13 +34,15 @@ CoordSystem Zoom::getCurrent(int i) {
 
 void Zoom::animate() {
   for (int i = 0; i < _iterations; i++) {
-    std::cout << 100 * static_cast<double>(i)/_iterations << "%" << std::endl;
+    if (i % (_iterations/10) == 0) {
+      std::cout << 100 * static_cast<double>(i)/_iterations << "%" << std::endl;
+    }
     auto current = getCurrent(i);
     BifurcationDiagram diag(current._width, current._height,
                             _brightness, current, _map);
     std::stringstream ss;
     ss << "frame_";
-    ss << i;
+    ss << std::setfill('0') << std::setw(5) << i;
     ss << ".bmp";
     diag.drawDiagram(ss.str(), false);
   }
