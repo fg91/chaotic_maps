@@ -31,13 +31,15 @@ int main() {
   CoordSystem coords(xmin, xmax, ymin, ymax, width, height);
 
   // Chaotic map
-  int transient = 10000;
-  int samples = 500000;
+  int transient = 5000;
+  int samples = 100000;
   LogisticMap map(transient, samples);
   // GaussMap map(4.9, transient, samples); // x from -1 to 1, y from -1 to 1.5
   // TentMap map(transient, samples);  // x from 1 to 2, y from 0 to 1
 
   BifurcationDiagram bd(width, height, brightness, coords, &map);
+
+  // Progress will not be printed in order if run in parallel
   bd.drawDiagram("bifurcation.bmp", true);
 
 
@@ -67,7 +69,7 @@ int main() {
 
   // Chaotic map
   int transient = 10000;
-  int samples = 500000;
+  int samples = 100000;
   LogisticMap map(transient, samples);
 
   // Creating the frames for the zoom animation
