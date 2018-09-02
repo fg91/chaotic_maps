@@ -27,7 +27,7 @@ Create a video from individual frames (install `ffmpeg`):
 `convert -delay 1 *.bmp video.mp4`
 
 ### Examples
-
+To create plots, you can use the gnuplot script provided in the `plots` folder.
 ![](plots/logistic_map.png)
 ![](plots/gauss_map.png)
 ![](plots/tent_map.png)
