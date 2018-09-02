@@ -12,7 +12,7 @@ Creates bifurcation diagrams of chaotic maps and animations like these:
 `main.cpp` shows several examples of how to create bifurcation diagrams and animations thereof.
 If you notice that the bifurcations are blurry, increase `transient`, if the chaotic regions are noisy, increase `samples`.
 
-Runtime is $\mathcal O\Bigl(\text{Num of frames}\cdot \text{frame width}\cdot\bigl(\text{transient}+\text{samples}+\text{frame height}\bigr)\Bigr)$
+Runtime is $O\Bigl(\text{Num of frames}\cdot \text{frame width}\cdot\bigl(\text{transient}+\text{samples}+\text{frame height}\bigr)\Bigr)$
 
 If your computer currently does not support OpenMP, remove the flag `-fopenmp` from the makefile.
 
