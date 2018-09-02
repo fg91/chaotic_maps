@@ -17,7 +17,7 @@ int main() {
   // ------------------------------------
   // -- Example 1: Bifurcation diagram --
   // ------------------------------------
-  /*
+
   // Parameters for frame
   int width = 1800;
   int height = 1600;
@@ -34,12 +34,12 @@ int main() {
   int transient = 10000;
   int samples = 500000;
   LogisticMap map(transient, samples);
-  //GaussMap map(4.9, transient, samples);
-  //TentMap map(transient, samples);
+  // GaussMap map(4.9, transient, samples); // x from -1 to 1, y from -1 to 1.5
+  // TentMap map(transient, samples);  // x from 1 to 2, y from 0 to 1
 
   BifurcationDiagram bd(width, height, brightness, coords, &map);
   bd.drawDiagram("bifurcation.bmp", true);
-  */
+
 
   // ------------------------------------
   // --- Example 2: zoom in animation ---
@@ -109,20 +109,5 @@ int main() {
     std::cout << i << std::endl;
   }
   */
-
-  
-  LogisticMap map(0, 1000);
-  double x = .1;
-  for (int i = 0; i < map._nSamples; i++) {
-    std::cout << i << "\t" << x << std::endl;
-    x = map.equation(x, 3.7);
-  }
-
-
-
-
-
-  
-  
   return 0;
 }
