@@ -1,6 +1,6 @@
 # Bifurcation diagrams of chaotic maps
 
-Blog post explaining bifurcation diagrams can be found here:
+Blog post explaining bifurcation diagrams can be found [here](https://medium.com/@fabiograetz/the-stunning-beauty-of-chaos-theory-fd0e1597d68a):
 
 Creates bifurcation diagrams of chaotic maps and animations like these:
 
