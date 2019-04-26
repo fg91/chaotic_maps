@@ -22,10 +22,10 @@ class BifurcationDiagram {
  public:
   BifurcationDiagram(int width, int height, int brightness,
                      const CoordSystem &coords, ChaoticMap *map);
-  BifurcationDiagram(const BifurcationDiagram &other) = delete;  // member _bitmap has unique_ptr
+  BifurcationDiagram(const BifurcationDiagram &other) = delete;
   BifurcationDiagram &operator=(const BifurcationDiagram &other) = delete;
   BifurcationDiagram(BifurcationDiagram &&other) = default;
-  BifurcationDiagram &operator=(BifurcationDiagram &&other) = delete;  // _coords is const
+  BifurcationDiagram &operator=(BifurcationDiagram &&other) = delete;
   virtual ~BifurcationDiagram();
   void drawDiagram(std::string filename, bool verbose);
   uint8_t color(int brightness, int binCount, int totCount);
